@@ -1,0 +1,10 @@
+html {
+  background: #cacaca;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+button {
+  background-color: #a2bdb4;
+  border: 1px solid #7b9371;
+  border-radius: 4px;
+}
