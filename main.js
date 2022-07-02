@@ -1,6 +1,10 @@
 console.log("Hello world");
 
-const API_URL = "https://api.thecatapi.com/v1/images/search?limit=3";
+// const API_URL = "https://api.thecatapi.com/v1/images/search?limit=3";
+
+querystring = ["?", "limit=3", "&order=Desc"].join("");
+
+const API_URL = `https://api.thecatapi.com/v1/images/search${querystring}`;
 
 // async function myCat() {
 //   const res = await fetch(URL);
