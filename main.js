@@ -45,7 +45,7 @@ async function loadRandomMichis() {
   }
 }
 
-async function loadFavoritesMichis() {
+async function loadFavouriteMichis() {
   const res = await fetch(API_URL_FAVOURITES);
   const data = await res.json();
   console.log("Favorites: ", data);
@@ -56,5 +56,24 @@ async function loadFavoritesMichis() {
   }
 }
 
+async function saveFavourite() {
+  const res = await fetch(API_URL_FAVOURITES, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      image_id: "tde",
+    }),
+  });
+
+  const data = await res.json();
+  console.log("saveFavourite: ", res);
+  if (res.status !== 200) {
+    spanError.innerHTML = "Hubo un error: " + res.status;
+    console.log("Hubo un error: ", res.status, data.message);
+  }
+}
+
 loadRandomMichis();
-loadFavoritesMichis();
+loadFavouriteMichis();
