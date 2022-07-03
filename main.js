@@ -1,10 +1,17 @@
 console.log("Hello world");
 
-// const API_URL = "https://api.thecatapi.com/v1/images/search?limit=3";
+const API_KEY = "648a3f25-fd2f-41cc-be40-d17b46a00fd1";
+
+const API_URL = [
+  "https://api.thecatapi.com/v1/images/search",
+  "?limit=3",
+  "&order=Asc",
+  `&api_key=${API_KEY}`,
+].join("");
 
 querystring = ["?", "limit=3", "&order=Desc"].join("");
 
-const API_URL = `https://api.thecatapi.com/v1/images/search${querystring}`;
+// const API_URL = `https://api.thecatapi.com/v1/images/search${querystring}`;
 
 // async function myCat() {
 //   const res = await fetch(URL);
