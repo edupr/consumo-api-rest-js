@@ -10,14 +10,35 @@
   <body>
     <h1>Gatos aleatorios</h1>
     <p>Prueba de concepto para consumir una API REST</p>
-    <div>
-      <img id="img1" width="250" alt="Foto gato" />
-      <img id="img2" width="250" alt="Foto gato" />
-      <img id="img3" width="250" alt="Foto gato" />
+
+    <section id="randomMichis">
+      <article>
+        <img id="img1" width="250" alt="Foto gato" />
+        <button>Guardar michi en favoritos</button>
+      </article>
+
+      <article>
+        <img id="img2" width="250" alt="Foto gato" />
+        <button>Guardar michi en favoritos</button>
+      </article>
+
+      <article>
+        <img id="img3" width="250" alt="Foto gato" />
+        <button>Guardar michi en favoritos</button>
+      </article>
+
       <button type="button" class="random-cat-button" onclick="reload()">
-        Siguiente gato
+        Siguientes gatos
       </button>
-    </div>
+    </section>
+
+    <section id="favoritesMichis">
+      <h2>Michis favoritos</h2>
+      <article>
+        <img id="img1" width="250" alt="Foto gato" />
+        <button>Quitar michi en favoritos</button>
+      </article>
+    </section>
 
     <script src="./main.js"></script>
   </body>
