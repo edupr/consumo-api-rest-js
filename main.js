@@ -10,14 +10,8 @@ const API_URL_FAVOURITES = [
   "https://api.thecatapi.com/v1/favourites",
   "?limit=2",
   "&order=Asc",
-  // `&api_key=${API_KEY}`,
+  `&api_key=${API_KEY}`,
 ].join("");
-// const API_URL_FAVOURITES = [
-//   "https://api.thecatapi.com/v1/favourites",
-//   "?limit=2",
-//   "&order=Asc",
-//   `&api_key=${API_KEY}`,
-// ].join("");
 
 const spanError = document.getElementById("error");
 
@@ -58,6 +52,7 @@ async function loadFavoritesMichis() {
 
   if (res.status !== 200) {
     spanError.innerHTML = "Hubo un error: " + res.status;
+    console.log("Hubo un error: ", res.status, data.message);
   }
 }
 
