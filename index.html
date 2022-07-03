@@ -11,6 +11,8 @@
     <h1>Gatos aleatorios</h1>
     <p>Prueba de concepto para consumir una API REST</p>
 
+    <span id="error"></span>
+
     <section id="randomMichis">
       <article>
         <img id="img1" width="250" alt="Foto gato" />
@@ -22,12 +24,11 @@
         <button>Guardar michi en favoritos</button>
       </article>
 
-      <article>
-        <img id="img3" width="250" alt="Foto gato" />
-        <button>Guardar michi en favoritos</button>
-      </article>
-
-      <button type="button" class="random-cat-button" onclick="reload()">
+      <button
+        type="button"
+        class="random-cat-button"
+        onclick="loadRandomMichis()"
+      >
         Siguientes gatos
       </button>
     </section>
