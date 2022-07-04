@@ -8,10 +8,10 @@ const API_URL_RANDOM = [
 
 const API_URL_FAVOURITES = [
   "https://api.thecatapi.com/v1/favourites",
-  // "?limit=2",
-  // "&order=Asc",
   `?api_key=${API_KEY}`,
 ].join("");
+
+const API_URL_FAVOURITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=${API_KEY}`;
 
 const spanError = document.getElementById("error");
 
@@ -36,8 +36,7 @@ async function loadRandomMichis() {
 
   if (res.status !== 200) {
     spanError.innerHTML = "Hubo un error: " + res.status;
-  }
-  {
+  } else {
     const img1 = document.getElementById("img1");
     const img2 = document.getElementById("img2");
     const btn1 = document.getElementById("btn1");
@@ -48,7 +47,7 @@ async function loadRandomMichis() {
     btn2.onclick = () => saveFavouriteMichi(data[1].id);
   }
 }
-
+// LOAD FAVORITES----------------------------------------
 async function loadFavouriteMichis() {
   const res = await fetch(API_URL_FAVOURITES);
   const data = await res.json();
@@ -58,16 +57,19 @@ async function loadFavouriteMichis() {
     spanError.innerHTML = "Hubo un error: " + res.status;
     console.log("Hubo un error: ", res.status, data.message);
   } else {
+
+    const section = document.getElementById('favouriteMichis');
+
     data.forEach((michi) => {
-      const section = document.getElementById('favouriteMichis');
+
       const article = document.createElement('article');
       const img = document.createElement('img');
       const btn = document.createElement('button');
       const btnText = document.createTextNode('Sacar gato de favoritos');
-
       img.src = michi.image.url;
       img.width = 150;
       btn.appendChild(btnText);
+      btn.onclick = () => deleteFavouriteMichi(michi.id)
       article.appendChild(img);
       article.appendChild(btn);
       section.appendChild(article);
@@ -82,7 +84,7 @@ async function saveFavouriteMichi(id) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      image_id: id,
+      image_id: id
     }),
   });
 
@@ -91,7 +93,31 @@ async function saveFavouriteMichi(id) {
   if (res.status !== 200) {
     spanError.innerHTML = "Hubo un error: " + res.status;
     console.log("Hubo un error: ", res.status, data.message);
+  } else {
+    console.log("Gato guardado en favoritos");
   }
+}
+// DELETE FAVOURITE--------------------------
+async function deleteFavouriteMichi(id) {
+  const res = await fetch(API_URL_FAVOURITES_DELETE(id), {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      image_id: id,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (res.status !== 200) {
+    spanError.innerHTML = "Hubo un error: " + res.status;
+    console.log("Hubo un error: ", res.status, data.message);
+  } else {
+    console.log("Gato eliminado de favoritos");
+  }
+  console.log("saveFavourite: ", res);
 }
 
 loadRandomMichis();
