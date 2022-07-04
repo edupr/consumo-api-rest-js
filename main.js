@@ -3,12 +3,12 @@ const API_KEY = "648a3f25-fd2f-41cc-be40-d17b46a00fd1";
 const API_URL_RANDOM = [
   "https://api.thecatapi.com/v1/images/search",
   "?limit=2",
-  `&api_key=${API_KEY}`,
+  // `&api_key=${API_KEY}`,
 ].join("");
 
 const API_URL_FAVOURITES = [
   "https://api.thecatapi.com/v1/favourites",
-  `?api_key=${API_KEY}`,
+  // `?api_key=${API_KEY}`,
 ].join("");
 
 const API_URL_FAVOURITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=${API_KEY}`;
@@ -19,16 +19,7 @@ querystring = ["?", "limit=2", "&order=Desc"].join("");
 
 // const API_URL = `https://api.thecatapi.com/v1/images/search${querystring}`;
 
-// async function myCat() {
-//   const res = await fetch(URL);
-//   const data = await res.json();
-//   const img = document.querySelector("img");
-//   img.src = data[0].url;
-// }
-// const myButton = document.querySelector("button");
-// myButton.onclick = myCat;
-// Fetch data con async await
-
+// LOAD RANDOM MICHIS-------------------------------------
 async function loadRandomMichis() {
   const res = await fetch(API_URL_RANDOM);
   const data = await res.json();
@@ -49,7 +40,12 @@ async function loadRandomMichis() {
 }
 // LOAD FAVORITES----------------------------------------
 async function loadFavouriteMichis() {
-  const res = await fetch(API_URL_FAVOURITES);
+  const res = await fetch(API_URL_FAVOURITES, {
+    method: 'GET',
+    headers: {
+      'X-API-KEY': API_KEY
+    }
+  });
   const data = await res.json();
   console.log("Favorites: ", data);
 
@@ -69,7 +65,7 @@ async function loadFavouriteMichis() {
       const article = document.createElement('article');
       const img = document.createElement('img');
       const btn = document.createElement('button');
-      const btnText = document.createTextNode('Sacar gato de favoritos');
+      const btnText = document.createTextNode('Quitar gato de favoritos');
       img.src = michi.image.url;
       img.width = 100;
       btn.appendChild(btnText);
@@ -85,7 +81,8 @@ async function saveFavouriteMichi(id) {
   const res = await fetch(API_URL_FAVOURITES, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
+      'X-API-KEY': API_KEY
     },
     body: JSON.stringify({
       image_id: id
@@ -107,7 +104,8 @@ async function deleteFavouriteMichi(id) {
   const res = await fetch(API_URL_FAVOURITES_DELETE(id), {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
+      'X-API-KEY': API_KEY,
     },
     body: JSON.stringify({
       image_id: id,
