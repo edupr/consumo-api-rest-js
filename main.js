@@ -61,7 +61,7 @@ async function loadFavouriteMichis() {
     const section = document.getElementById('favouriteMichis');
     section.innerHTML = "";
     const h2 = document.createElement('h2');
-    const h2Text = document.createTextNode('Michis favoritos');
+    const h2Text = document.createTextNode('Favoritos:  ');
     h2.appendChild(h2Text);
     section.appendChild(h2);
 
@@ -70,7 +70,7 @@ async function loadFavouriteMichis() {
       const article = document.createElement('article');
       const img = document.createElement('img');
       const btn = document.createElement('button');
-      const btnText = document.createTextNode('Quitar gato de favoritos');
+      const btnText = document.createTextNode('❌');
       img.src = michi.image.url;
       img.width = 100;
       btn.appendChild(btnText);
@@ -155,6 +155,20 @@ async function uploadMichiPhoto() {
     saveFavouriteMichi(data.id);
   }
 }
+
+  // preview
+  const previewImage = () => {
+    const file = document.getElementById("file").files;
+    console.log(file);
+    if (file.length > 0) {
+      const fileReader = new FileReader();
+  
+      fileReader.onload = function(e) {
+        document.getElementById("preview").setAttribute("src", e.target.result);
+      };
+      fileReader.readAsDataURL(file[0]);
+    }
+  }
 
 loadRandomMichis();
 loadFavouriteMichis();

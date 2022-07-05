@@ -16,40 +16,49 @@
     <!-- Random michis -->
     <section id="randomMichis">
       <article>
-        <img id="img1" width="150" alt="Foto gato" />
+        <img id="img1" width="250" alt="Foto gato" /><br><br>
         <button type="button" id="btn1" onclick="saveFavourite()">
-          Guardar michi en favoritos
-        </button>
+          💾 </button>
       </article>
 
       <article>
         <img id="img2" width="150" alt="Foto gato" />
-        <button type="button" id="btn2" onclick="saveFavouriteMichi()">Guardar michi en favoritos</button>
+        <button type="button" id="btn2" onclick="saveFavouriteMichi()">💾 </button>
       </article>
 
-      <button type="button" class="random-cat-button" onclick="loadRandomMichis()">Siguientes gatos</button>
+      <button type="button" class="random-cat-button" onclick="loadRandomMichis()">Siguientes gatos <br>⏭ </button>
     </section>
 
     <!-- Formulario Subir michi-->
     <section id="uploadingMichi">
-      <h2>Sube la foto de tu gato</h2>
-
+      <h2>Sube la foto de tu gato:</h2>
       <form id="uploadingForm">
-        <input id="file" type="file" name="file" />
-        <button type="button" onclick="uploadMichiPhoto()">Subir foto de gato</button>
+        <label for="file" class="custom-file-upload"><i class="fa-solid fa-camera"></i> </label>
+        <input id="file" type="file" name="file" onchange="previewImage()" />
+        <img id="preview"/>
+        <button id="submitCat" type="button" onclick="uploadMichiPhoto()">Subir foto <i class="fa-solid fa-paper-plane"></i></button>
       </form>
     </section>
 
+    <!-- Ejemplo -->
+    <!-- <section id="uploadingDog">
+      <h2>Sube la foto de tu perro</h2>
+      <form id="uploadingForm">
+        <label for="file" class="custom-file-upload">Selecciona la foto<i class="fa-solid fa-camera"></i></label>
+        <input id="file" type="file" name="file" onchange="previewImage()" />
+        <img id="preview" />
+        <button id="submitDog" type="button" onclick="uploadDogPhoto()">Subir foto de tu perro<i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+    </section> -->
+
     <!-- Gatos Favoritos -->
     <section id="favouriteMichis">
-      <h2>Michis favoritos</h2>
+      <h2>Michis favoritos:</h2>
       <article>
         <img id="img1" width="250" alt="Foto gato favorito" />
-        <button>Quitar michi en favoritos</button>
+        <button>Quitar</button>
       </article>
     </section>
-
-
 
     <script src="./main.js"></script>
   </body>
